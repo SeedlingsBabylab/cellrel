@@ -36,7 +36,7 @@ if __name__ == "__main__":
         orig_annots = annot_to_df(orig_clan_file.annotations())
 
         not_equal = compare.compare2(orig_annots, new_annots)
-        not_eekwal = not_equal.query('(utt_type == True) & (present == True)')
+        not_eekwal = not_equal.query('(utt_type == True) | (present == True)')
 
 
         mismatched = new_annots.iloc[not_eekwal.index]
