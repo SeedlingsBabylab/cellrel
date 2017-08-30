@@ -18,6 +18,7 @@ if __name__ == "__main__":
 
     start = sys.argv[1]
     output = sys.argv[2]
+    bl_output = sys.argv[3]
 
     grouper = fg.FileGrouper(start, types=[
                                             fg.audio_blank_recode_cha,
@@ -38,6 +39,8 @@ if __name__ == "__main__":
         not_equal = compare.compare2(orig_annots, new_annots)
         not_eekwal = not_equal.query('(utt_type == True) | (present == True)')
 
+        orig_annots.to_csv(os.path.join(bl_output, "{}_orig.csv".format(prefix)))
+        new_annots.to_csv(os.path.join(bl_output, "{}_recode.csv".format(prefix)))
 
         mismatched = new_annots.iloc[not_eekwal.index]
 
