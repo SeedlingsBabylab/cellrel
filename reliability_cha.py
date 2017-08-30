@@ -50,6 +50,7 @@ if __name__ == "__main__":
         out_path = os.path.join(output, "{}_mismatches.csv".format(prefix))
         mismatched.to_csv(out_path, index=False)
 
+        print "file:      {}".format(prefix)
         print "total:     {}".format(total_num)
         print "mismatch:  {}".format(mismatch_num)
         print "% matched: {}".format(float(total_num-mismatch_num)/total_num)
