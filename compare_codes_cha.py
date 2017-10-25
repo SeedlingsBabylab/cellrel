@@ -18,7 +18,6 @@ if __name__ == "__main__":
 
     start = sys.argv[1]
     output = sys.argv[2]
-    bl_output = sys.argv[3]
 
     grouper = fg.FileGrouper(start, types=[
                                             fg.audio_blank_recode_cha,
@@ -29,20 +28,19 @@ if __name__ == "__main__":
     total_num = 0
     mismatch_num = 0
     for prefix, group in grouper.groups():
-        print "file:      {}".format(prefix)
+        print "\n\n{}".format(prefix)
+        if prefix == "20_06":
+            print
+
         new_clan_file = pc.ClanFile(group.audio_recode_cha)
         new_annots = annot_to_df(new_clan_file.annotations())
 
         orig_clan_file = pc.ClanFile(group.audio_orig_recode_cha)
         orig_annots = annot_to_df(orig_clan_file.annotations())
 
-        orig_annots.to_csv(os.path.join(bl_output, "{}_orig.csv".format(prefix)))
-        new_annots.to_csv(os.path.join(bl_output, "{}_recode.csv".format(prefix)))
-
         not_equal = compare.compare2(orig_annots, new_annots)
         not_eekwal = not_equal.query('(utt_type == True) | (present == True)')
 
-        
 
         mismatched = new_annots.iloc[not_eekwal.index]
 
@@ -51,7 +49,6 @@ if __name__ == "__main__":
 
         out_path = os.path.join(output, "{}_mismatches.csv".format(prefix))
         mismatched.to_csv(out_path, index=False)
-
 
         print "total:     {}".format(total_num)
         print "mismatch:  {}".format(mismatch_num)

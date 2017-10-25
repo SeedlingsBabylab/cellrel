@@ -6,3 +6,4 @@
 *.pyc
 bl_out
 .DS_Store
+*.txt

@@ -2,7 +2,7 @@ import sys
 import os
 import pandas as pd
 import filegrouper as fg
-import extract_cha as extract
+import sample as extract
 import pyclan as pc
 
 import compare

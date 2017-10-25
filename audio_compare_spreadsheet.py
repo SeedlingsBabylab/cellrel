@@ -122,26 +122,10 @@ if __name__ == "__main__":
         print group.video_recode_csv
         print group.orig_video_recode_csv
 
-        joined = join(group.orig_video_recode_csv,
+        joined = join_chi(group.orig_video_recode_csv,
                       group.video_recode_csv)
-        # joined = join_chi(group.orig_video_recode_csv,
-        #               group.video_recode_csv)
 
         final_joined += joined
 
 
-    output_joined(final_joined)
-    # output_joined_chi(final_joined)
-
-
-
-    #     ne = compare(group.video_recode_csv,
-    #                  group.orig_video_recode_csv)
-    #     if final_ne is None:
-    #         final_ne = ne
-    #     else:
-    #         final_ne = final_ne.append(ne, ignore_index=True)
-    #
-    #     print ne.shape
-    #
-    # final_ne.to_csv("output.csv")
+    output_joined_chi(final_joined)
