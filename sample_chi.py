@@ -80,7 +80,7 @@ def fill_orig_cha(clan_file, annots):
     lines = sorted(annot_lines, reverse=True)
     for line_num in lines:
         clan_line = clan_file.line_map[line_num]
-        pho_string = "%pho:\t{}\r\n".format("\t".join([x.pho_annot for x in clan_line.annotations]))
+        pho_string = "%pho:\t{}\r\n".format(" ".join([x.pho_annot for x in clan_line.annotations]))
         clan_file.line_map.insert(line_num+1, pc.ClanLine(line_num, pho_string))
 
     return clan_file, annots
