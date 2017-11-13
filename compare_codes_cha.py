@@ -5,7 +5,7 @@ import filegrouper as fg
 import sample as extract
 import pyclan as pc
 
-import compare
+import compare_old
 
 
 def annot_to_df(annots):
@@ -38,7 +38,7 @@ if __name__ == "__main__":
         orig_clan_file = pc.ClanFile(group.audio_orig_recode_cha)
         orig_annots = annot_to_df(orig_clan_file.annotations())
 
-        not_equal = compare.compare2(orig_annots, new_annots)
+        not_equal = compare_old.compare2(orig_annots, new_annots)
         not_eekwal = not_equal.query('(utt_type == True) | (present == True)')
 
 

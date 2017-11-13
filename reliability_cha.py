@@ -5,7 +5,7 @@ import filegrouper as fg
 import sample as extract
 import pyclan as pc
 
-import compare
+import compare_old
 
 
 def annot_to_df(annots):
@@ -39,7 +39,7 @@ if __name__ == "__main__":
         orig_annots.to_csv(os.path.join(bl_output, "{}_orig.csv".format(prefix)))
         new_annots.to_csv(os.path.join(bl_output, "{}_recode.csv".format(prefix)))
 
-        not_equal = compare.compare2(orig_annots, new_annots)
+        not_equal = compare_old.compare2(orig_annots, new_annots)
         not_eekwal = not_equal.query('(utt_type == True) | (present == True)')
 
         

@@ -5,7 +5,7 @@ import filegrouper as fg
 import sample as extract
 import pyclan as pc
 
-import compare
+import compare_old
 
 
 def annot_to_df(annots):

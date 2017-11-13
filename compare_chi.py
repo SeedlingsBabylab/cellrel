@@ -21,9 +21,8 @@ def extract_chi(clan_file):
     phos = []
 
     for pho in orig_phos:
-        results = pho.content.translate(None, '\r\n').split('\t')
+        results = pho.content.translate(None, '\r\n').split()
         phos += results
-    print
 
     pairs = []
     if len(chis) != len(phos):
