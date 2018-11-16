@@ -9,9 +9,10 @@ import pandas as pd
 
 def extract(path, percent=0.10):
     clan_file = pc.ClanFile(path)
-    clan_file.flatten()
+    # clan_file.flatten()
     clan_file.annotate()
     annotations = clan_file.annotations()
+    print(annotations[0])
     len_all = len(annotations)
     clan_file.clear_annotations()
 

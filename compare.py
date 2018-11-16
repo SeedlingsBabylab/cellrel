@@ -6,7 +6,7 @@ import csv
 
 def extract_annots(clan_file):
 
-    clan_file.flatten()
+    # clan_file.flatten()
     clan_file.annotate()
     annots = clan_file._flat_annotations()
 

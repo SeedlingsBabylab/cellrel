@@ -10,9 +10,9 @@ class Group:
 def output_bl_csv(annots, path):
     with open(path, "wb") as out:
         writer = csv.writer(out)
-        writer.writerow(["word", "onset", "offset", "utt_type", "present", "speaker"])
+        writer.writerow(["word", "onset", "offset", "utt_type", "present", "speaker", "annotid"])
         for x in annots:
-            writer.writerow([x.word, x.onset, x.offset, x.utt_type, x.present, x.speaker])
+            writer.writerow([x.word, x.onset, x.offset, x.utt_type, x.present, x.speaker, x.annotation_id])
 
 
 
