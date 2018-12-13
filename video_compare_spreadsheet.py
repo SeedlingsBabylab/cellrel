@@ -27,6 +27,7 @@ def compare(orig, recode):
                   "labeled_object.offset",
                   "labeled_object.object",
                   "labeled_object.speaker",
+                  "labeled_object.id",
                   "basic_level"],
                   1
                 )
@@ -63,7 +64,7 @@ def join(orig, recode):
             for line in original:
                 reco_line = recoded.next()
                 # new_line = []
-                new_line = [file_prefix] + line[0:6] + reco_line[4:6]
+                new_line = [file_prefix] + [line[7]] + line[0:6] + reco_line[4:6]
                 # new_line.append(line == reco_line)
                 joined.append(new_line)
 
@@ -72,16 +73,17 @@ def join(orig, recode):
 
 
 
-def output_joined(joined):
-    with open("video_reliability_comparison.csv", "wb") as out:
+def output_joined(input_dir, joined):
+    with open(input_dir+"/video_reliability_comparison.csv", "wb") as out:
         writer = csv.writer(out)
-        writer.writerow(["file", "ordinal", "onset", "offset", "word", "orig_utt_type", "orig_present", "new_utt_type", "new_present"])
+        writer.writerow(["file", "id", "ordinal", "onset", "offset", "word", "orig_utt_type", "orig_present", "new_utt_type", "new_present"])
         writer.writerows(joined)
 
 
 if __name__ == "__main__":
 
     input_dir = sys.argv[1]
+    print(input_dir)
 
     grouper = fg.FileGrouper(dir=input_dir,
                              types=[fg.video_orig_recode_csv,
@@ -91,9 +93,9 @@ if __name__ == "__main__":
     final_joined = []
 
     for prefix, group in grouper.groups():
-        print prefix
-        print group.video_recode_csv
-        print group.orig_video_recode_csv
+        print("prefix, ", prefix)
+        print("video recode", group.video_recode_csv)
+        print("video orig", group.orig_video_recode_csv)
 
         joined = join(group.orig_video_recode_csv,
                       group.video_recode_csv)
@@ -101,4 +103,4 @@ if __name__ == "__main__":
         final_joined += joined
 
 
-    output_joined(final_joined)
+    output_joined(input_dir, final_joined)
